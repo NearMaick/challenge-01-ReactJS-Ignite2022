@@ -1,0 +1,35 @@
+.container {
+  margin-top: -1.725rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  height: 3.375rem;
+  width: 638px;
+  background-color: var(--gray-500);
+  color: var(--gray-100);
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--gray-700);
+}
+
+.button {
+  height: 3.375rem;
+  background-color: var(--blue);
+  color: var(--gray-100);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border-style: none;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.button span {
+  margin-right: 0.5rem;
+}
