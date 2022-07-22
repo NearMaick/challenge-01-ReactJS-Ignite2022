@@ -12,8 +12,6 @@ export function Todo() {
         <TodoForm />
         <Counter />
         <Task />
-        <Task />
-        <Task />
       </div>
     </>
   );
