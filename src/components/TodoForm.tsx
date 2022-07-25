@@ -1,15 +1,25 @@
 import { PlusCircle } from "phosphor-react";
-import { useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useState,
+} from "react";
 import { v4 as uuidV4 } from "uuid";
 import styles from "./todo-form.module.css";
 
 interface TaskListProps {
   tasksList: TaskList[];
-  setTasksList: (task: TaskList[]) => {
-    id: string;
-    title: string;
-    done: boolean;
-  };
+  setTasksList: Dispatch<
+    SetStateAction<
+      {
+        id: string;
+        title: string;
+        done: boolean;
+      }[]
+    >
+  >;
 }
 
 interface TaskList {
@@ -21,7 +31,7 @@ interface TaskList {
 export function TodoForm({ tasksList, setTasksList }: TaskListProps) {
   const [newTask, setNewTask] = useState("");
 
-  function handleCreateNewTask(event: any) {
+  function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
 
     setTasksList([
@@ -36,7 +46,7 @@ export function TodoForm({ tasksList, setTasksList }: TaskListProps) {
     setNewTask("");
   }
 
-  function handleNewTaskChange(event: any) {
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     setNewTask(event?.target.value);
   }
 
