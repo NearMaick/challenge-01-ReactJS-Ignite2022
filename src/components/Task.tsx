@@ -8,18 +8,31 @@ import { TodoForm } from "./TodoForm";
 export function Task() {
   const [isTask, setIsTask] = useState(true);
   const [tasksList, setTasksList] = useState(tasks);
-  const [addTask, setAddTask] = useState(tasks);
 
-  function handleToggleTask(task: string) {
-    console.log(task);
+  function handleToggleTask(taskId: string) {
+    const newTasksList = tasksList.map((task) => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          done: !task.done,
+        };
+      }
+      return task;
+    });
 
-    // const newTaskList = setTaskList();
+    setTasksList(newTasksList);
+  }
+
+  function handleDeleteTask(taskId: string) {
+    const newTasksList = tasksList.filter((task) => task.id !== taskId);
+
+    setTasksList(newTasksList);
   }
 
   return (
     <>
       <TodoForm tasksList={tasksList} setTasksList={setTasksList} />
-      <Counter />
+      <Counter tasksList={tasksList} />
 
       {isTask === false && (
         <article className={styles.isNotTaskContainer}>
@@ -33,14 +46,16 @@ export function Task() {
         <div key={task.id} className={styles.taskContainer}>
           <input
             type='checkbox'
-            checked={task.done}
             onChange={() => handleToggleTask(task.id)}
+            checked={task.done}
             value='None'
-            id='roundedTwo'
+            id={`task-${task.id}`}
             name='check'
           />
-          <label htmlFor='roundedTwo'>{task.title}</label>
-          <Trash size={24} />
+          <label htmlFor={`task-${task.id}`}>{task.title}</label>
+          <button onClick={() => handleDeleteTask(task.id)}>
+            <Trash size={24} />
+          </button>
         </div>
       ))}
     </>

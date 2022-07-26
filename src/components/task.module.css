@@ -68,3 +68,10 @@ h3 {
 .taskContainer label {
   margin: 0 0.75rem;
 }
+
+.taskContainer button {
+  background: transparent;
+  border: none;
+  color: var(--gray-200);
+  cursor: pointer;
+}

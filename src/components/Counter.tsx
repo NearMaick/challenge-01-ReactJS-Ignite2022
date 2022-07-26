@@ -1,15 +1,31 @@
 import styles from "./counter.module.css";
 
-export function Counter() {
+interface TaskListProps {
+  tasksList: TaskList[];
+}
+interface TaskList {
+  id: string;
+  title: string;
+  done: boolean;
+}
+
+export function Counter(taskList: TaskListProps) {
+  const createdTasks = taskList.tasksList.length;
+  const tasksDone = taskList.tasksList.filter(
+    (task) => task.done === true
+  ).length;
+
   return (
     <div className={styles.container}>
       <div>
         <strong className={styles.taskCreated}>Tarefas criadas</strong>
-        <span>5</span>
+        <span>{taskList.tasksList.length}</span>
       </div>
       <div>
         <strong className={styles.taskDone}>Concluídas</strong>
-        <span>2 de 5</span>
+        <span>
+          {tasksDone} de {createdTasks}
+        </span>
       </div>
     </div>
   );
